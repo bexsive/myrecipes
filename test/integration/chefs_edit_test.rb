@@ -30,6 +30,6 @@ class ChefsEditTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     @chef.reload
     assert_match "Matt1", @chef.chefname
-    assert_match "Matthew1.sykes@hotmail.com", @chef.email
+    assert_match "matthew1.sykes@hotmail.com", @chef.email
   end
 end
