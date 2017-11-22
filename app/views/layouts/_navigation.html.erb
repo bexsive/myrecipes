@@ -16,7 +16,7 @@
       <ul class="nav navbar-nav">
         <li><%= link_to "Chefs", chefs_path %></li>
         <li><%= link_to "All Recipes", recipes_path %></li>
-
+  <!-- This is the Recipe navigation -->
         <% if logged_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Recipes <span class="caret"></span></a>
@@ -31,6 +31,21 @@
             </ul>
           </li>
           <% end %>
+  <!-- This is the Ingredient navigation -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ingredients <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "All Ingredients", ingredients_path %></li>
+              <% Ingredient.all.each do |ing| %>
+                <li> <%= link_to ing.name.capitalize, ingredient_path(ing) %></li>
+              <% end %>
+              <% if logged_in? && current_chef.admin? %>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "New Ingredient", new_ingredient_path %></li>
+              <% end %>
+            </ul>
+          </li>
+
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
